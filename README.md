@@ -16,3 +16,8 @@ All over the internet but the following IMO are worth metntioning:
     * Had a good explanation of Virtualenvs and how its a good idea to have a venv for every project.
     * [This] (hackercodex.com/guide/python-development-environment-on-mac-osx/) what I used for understanding and setting up this environment.
 
+**How to run?**
+
+1) Create a virtualenv - virtualenv venv
+2) pip install -r requirements.txt
+3) FLASK_APP=run.py flask run
