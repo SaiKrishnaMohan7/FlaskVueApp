@@ -3,7 +3,7 @@
 ## Runnign the App?
 
 1) Create a virtualenv -> virtualenv `name_of_your_preference`
-2) Intsall requirements -> pip install -r requirements.txt
+2) Intsall requirements -> `pip install -r requirements.txt`
 3) Tell Flask what configuraton to run `FLASK_CONFIG=development`
 4) Tell Flask what to run -> `FLASK_APP=run.py`
 5) Check if you have mysql installed or `brew install mysql` or `sudo apt-get install mysql`
