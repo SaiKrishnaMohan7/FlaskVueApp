@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_bootstrap import Bootstrap
+from flask import Flask, render_template
 
 from config import app_config
 
@@ -43,7 +44,20 @@ def create_app(config_name):
 
     from .home import home as home_blueprint
     app.register_blueprint(home_blueprint)
+
+    @app.errorhandler(403)
+    def forbidden(error):
+        return render_template('errors/403.html', title = 'Forbidden'), 403
+
+    @app.errorhandler(404)
+    def resource_not_found(error):
+        return render_template('errors/404.html', title = 'Page Not Found'), 404
+
+    @app.errorhandler(500)
+    def internal_server_error(error):
+        return render_template('errors/500.html', title = 'Internal Server Error'), 500
     
     return app
 
-#url_prefix -> all views in the admin blueprint will be accessed through this /admin
+#url_prefix -> all views in the admin blueprint will be accessed through /admin
+# @app.errorhandler(<error_code>) is a flask decorator

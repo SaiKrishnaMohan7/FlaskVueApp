@@ -4,13 +4,13 @@ class CommonConfig(object):
     """
     Common Configurations between Envs 
     """
+    DEBUG = True
 
 class DevelopmentConfig(object):
     """ 
     Development Configurations
     """
 
-    DEBUG = True
     SQLALCHEMY_ECHO = True #helps in debugging, logs errors
     #TESTING = True -> defaults to FALSE, activates test mode 
 
@@ -20,9 +20,17 @@ class ProductionConfig(object):
     """
     DEBUG = False
 
+class TestingConfig(object):
+    """ 
+    Testing Configurations
+    """
+
+    TESTING = True
+
 app_config = {
     'development': DevelopmentConfig,
-    'production': ProductionConfig
+    'production': ProductionConfig,
+    'testing': TestingConfig
 }
 
 #Good Resource -> http://flask.pocoo.org/docs/0.11/config/
