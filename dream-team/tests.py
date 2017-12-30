@@ -97,6 +97,13 @@ class TestViews(TestBase):
         response = self.client.get(url_for('home.homepage'))
         self.assertEqual(response.status_code, 200)
     
+    def test_login_view(self):
+        """
+        Test: login page is accessible w/o login
+        """
+        response = self.client.get(url_for('auth.login'))
+        self.assertEqual(response.status_code, 200)
+    
     def test_logout_view(self):
         """ 
         Test: logout is not accessible w/o login
@@ -121,7 +128,7 @@ class TestViews(TestBase):
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, redirect_url)
 
-    def test_admin_dashboard(self):
+    def test_admin_dashboard_view(self):
         """
         Test: admin dashboard is inaccessible w/o login
         and redirects to login then admin dashboard
@@ -133,13 +140,24 @@ class TestViews(TestBase):
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, redirect_url)
 
-    def test_department_views(self):
+    def test_departments_view(self):
         """ 
         Test: Departments page inaccessible w/o login
         and redirects to login page then departments page
         """
 
         target_url = url_for('admin.list_departments')
+        redirect_url = url_for('auth.login', next=target_url)
+        response = self.client.get(target_url)
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, redirect_url)
+    
+    def test_roles_view(self):
+        """
+        Test: roles page inaccessible w/o login
+        and redirects to login page
+        """
+        target_url = url_for('admin.list_roles')
         redirect_url = url_for('auth.login', next=target_url)
         response = self.client.get(target_url)
         self.assertEqual(response.status_code, 302)
