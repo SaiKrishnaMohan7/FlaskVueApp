@@ -29,7 +29,7 @@ def create_app(config_name):
 
     login_manager.init_app(app)
     login_manager.login_message = 'Login to access this page'
-    login_manager.login_view = 'auth_login'
+    login_manager.login_view = 'auth.login'
 
     #for Migrations
     migrate = Migrate(app, db)
